@@ -5,6 +5,8 @@ properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKe
 echo "Job name is: ${env.JOB_NAME}"
 echo "Node name is: ${env.NODE_NAME}"
 echo "Build number is: ${env.BUILD_NUMBER}"
+echo "Jenkins home dir is : ${env.JENKINS_HOME}"
+                             echo "Jenkins URL is : ${env.JENKINS_URL}"
 stage('checkout code')
 {
 
