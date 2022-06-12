@@ -1,0 +1,38 @@
+node 
+{ 
+def mavenHome= tool name:"Maven-3.8.5"
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([pollSCM('* * * * *')])])
+
+stage('checkout code')
+{
+
+git branch: 'development', credentialsId: 'jenkins', url: 'https://github.com/devops-training-lokanath/maven-web-application.git'
+
+}
+
+stage ('Build')
+
+{
+sh "${mavenHome}/bin/mvn clean package"
+}
+/*
+stage ('ExecuteSonarQubeReport')
+
+{
+sh "${mavenHome}/bin/mvn sonar:sonar"
+}
+
+
+stage ('UploadArtifactsIntoNexus')
+{
+sh "${mavenHome}/bin/mvn deploy"
+}
+
+stage ('DeployAppIntoTomcatServer')
+{
+sshagent(['3670b759-3cc6-475d-ad8c-8b6ba788cc1a']) {
+sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.41.177:/opt/apache-tomcat-9.0.63/webapps"
+}
+}
+*/
+}
