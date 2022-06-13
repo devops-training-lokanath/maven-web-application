@@ -1,5 +1,4 @@
-node
-{
+node{
     
 def mavenHome = tool name: "Maven-3.8.5"
 
@@ -16,7 +15,7 @@ sendSlackNotifications('STARTED')
 
 stage('CheckoutCode')
 {
-git branch: 'development', credentialsId: 'jenkins', url: 'https://github.com/devops-training-lokanath/maven-web-application.git'
+git branch: 'development', credentialsId: 'f5708724-a441-46f4-8f75-3757193ad3f4', url: 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
 }
 
 stage('Build')
@@ -41,7 +40,6 @@ sshagent(['82db108b-c059-4ce7-92f7-933e8f8c5dea']) {
 }
 }
 */
-
 }catch(e){
 currentBuild.result = "FAILED"
     throw e
@@ -49,8 +47,6 @@ currentBuild.result = "FAILED"
 finally{
 sendSlackNotifications(currentBuild.result)
 }
-
-
 
 }//Node Closing
 
